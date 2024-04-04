@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  webshell:
+    build:
+      dockerfile: Dockerfile
+    container_name: webshell
+    environment:
+      PORT: $PORT
+    ports:
+      - 0.0.0.0:2222:2222
+      - 0.0.0.0:$PORT:80

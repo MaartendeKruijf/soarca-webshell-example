@@ -1,0 +1,67 @@
+{
+    "type": "playbook",
+    "spec_version": "cacao-2.0",
+    "id": "playbook--12db7540-e42d-41fb-b1c5-724a31cb6e2a",
+    "name": "Playbook Name",
+    "description": "Playbook Description",
+    "created_by": "identity--ab479446-0857-47c7-b6c5-8eb8fcd5d80c",
+    "created": "2024-03-28T10:24:21.894Z",
+    "modified": "2024-03-28T10:24:21.894Z",
+    "revoked": false,
+    "derived_from": [
+        "playbook--56d4cdf1-3674-49af-a8fc-725471429c56",
+        "playbook--48ea3d7f-8115-4497-b842-2eb0d8703837",
+        "playbook--6fec2750-3aa5-4fba-a6e9-b3645ce8c2cc"
+    ],
+    "workflow_start": "start--aee2e5a0-dc17-4c0f-a491-0beec8406e7e",
+    "workflow": {
+        "start--aee2e5a0-dc17-4c0f-a491-0beec8406e7e": {
+            "on_completion": "action--35380b5e-fadb-4948-93f1-197b55c6db35",
+            "type": "start"
+        },
+        "action--35380b5e-fadb-4948-93f1-197b55c6db35": {
+            "on_completion": "end--dbb13198-6fd5-4b83-b6af-7cb6e04f3b1c",
+            "type": "action",
+            "commands": [
+                {
+                    "type": "http-api",
+                    "description": "Some description",
+                    "command": "GET /api/v3/ip_addresses/134.221.49.62 HTTP/1.1",
+                    "headers": {
+                        "x-apikey": [
+                            "<your-virustotal-api-key-here>"
+                        ]
+                    }
+                }
+            ],
+            "agent": "soarca--ecde29b3-5d5d-4810-9743-c74ffcfc67ed",
+            "targets": [
+                "http-api--7949fe8b-6737-4f03-904a-153da4168973"
+            ]
+        },
+        "end--dbb13198-6fd5-4b83-b6af-7cb6e04f3b1c": {
+            "type": "end"
+        }
+    },
+    "agent_definitions": {
+        "soarca--5ab5e0ba-3652-44a5-8d49-bfeccdd0cf7c": {
+            "type": "soarca",
+            "name": "soarca-ssh"
+        },
+        "soarca--ecde29b3-5d5d-4810-9743-c74ffcfc67ed": {
+            "type": "soarca",
+            "name": "soarca-http-api"
+        }
+    },
+    "target_definitions": {
+        "http-api--7949fe8b-6737-4f03-904a-153da4168973": {
+            "type": "http-api",
+            "name": "virustotal",
+            "address": {
+                "url": [
+                    "https://www.virustotal.com/api/v3/ip_addresses/1.1.1.1"
+                ]
+            }
+        }
+    }
+}
